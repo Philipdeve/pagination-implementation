@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 
 from sqlmodel import select, func, Session
 from models.customer import Customer
@@ -7,12 +7,10 @@ from db.connect import engine
 router = APIRouter()
 
 @router.get("/customers") # To demonstrate Offset-based Pagination
-def get_customers(page: int = 1, limit: int = 10):
-    page = max(1, page) # If the client sends page=0 or any negative number, it silently corrects it to 1. same thing for limit below.
-    limit = max(1, limit)
-
-    MAX_LIMIT = 100
-    limit = min(limit, MAX_LIMIT)
+def get_customers(
+    page: int = Query(default=1, ge=1),
+    limit: int = Query(default=10, ge=1, le=100)
+):
 
     offset = (page - 1) * limit
 

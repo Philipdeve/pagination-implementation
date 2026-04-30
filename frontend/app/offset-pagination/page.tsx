@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 
 type Customer = {
@@ -157,6 +158,12 @@ export default function OffsetPaginationPage() {
     <div className="min-h-screen bg-[#0d1117] text-[#e6edf3]">
       <main className="mx-auto max-w-[1012px] px-4 py-8">
         <header className="mb-8 border-b border-[#30363d] pb-6">
+          <Link
+            href="/"
+            className="mb-4 inline-block text-sm font-medium text-[#58a6ff] hover:underline"
+          >
+            ← Back to home
+          </Link>
           <h1 className="text-xl font-semibold tracking-tight text-[#e6edf3]">
             Customers
           </h1>
